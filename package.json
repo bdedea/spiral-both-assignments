@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "cypress": "^13.0.0"
+  },
+  "scripts": {
+    "cy:run": "npx cypress run --browser chrome",
+    "cy:open": "npx cypress open --browser chrome"
+  },
+  "dependencies": {
+    "cypress-plugin-api": "^2.11.1"
+  }
+}
