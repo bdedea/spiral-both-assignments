@@ -12,6 +12,8 @@ Create a test suite using JavaScript that you would like that performs requests 
 
 ---
 
+To run assignment 1 test, I'm just using `pytest` (can use `-s` too). Setup to run headed.
+
 To run assignment 2 tests, run `npm i` and then either of these commands:
 
 - `npm run cy:open --env version="test"` (to run in test runner)
