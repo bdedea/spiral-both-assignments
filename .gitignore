@@ -5,3 +5,9 @@ cypress/videos/*
 cypress/screenshots/*
 cypress/downloads/*
 cypress/fixtures/*
+
+# Coverage reports
+.pytest_cache/
+__pycache__
+
+.vscode
