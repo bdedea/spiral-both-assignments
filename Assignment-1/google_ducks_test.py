@@ -27,11 +27,20 @@ def test_google_ducks_search(page: Page) -> None:
     # Check that URL contains updated search reference (so not just google.com)
     expect(page).to_have_url(re.compile(".*search"))
     print(page.url)
-     
+
    
     # Search result title includes what you're searching
     assert page.title() == "ducks - Google Search"
     expect(page).to_have_title('ducks - Google Search')
+
+    # Can click on a URL and it takes you to new page (which also checks content on page)
+    page.get_by_text("Duck - Wikipedia").click()
+    expect(page).to_have_url(re.compile(".*wikipedia"))
+    assert page.title() == "Duck - Wikipedia"
+
+    # Expanding on this test (and steps), I'd want to check full responses yielded from search results
+
+   
 
 
 
