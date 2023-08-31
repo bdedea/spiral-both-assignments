@@ -28,7 +28,6 @@ def test_google_ducks_search(page: Page) -> None:
     expect(page).to_have_url(re.compile(".*search"))
     print(page.url)
 
-   
     # Search result title includes what you're searching
     assert page.title() == "ducks - Google Search"
     expect(page).to_have_title('ducks - Google Search')
