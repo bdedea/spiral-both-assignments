@@ -6,8 +6,7 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     trashAssetsBeforeRuns: true,
     supportFile: "Assignment-2/cypress/support/commands.js",
-    specPattern:
-      "/Users/bdedea/spiral-both-assignments/Assignment-2/cypress/e2e",
+    specPattern: "Assignment-2/cypress/e2e",
     setupNodeEvents(on, config) {
       on("after:spec", (spec, results) => {
         if (results && results.video) {
