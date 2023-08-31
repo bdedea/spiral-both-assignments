@@ -8,14 +8,17 @@ def test_google_ducks_search(page: Page) -> None:
     page.goto("/")
     assert page.title() == "Google"
 
-    # Search for "Ducks"
-    page.locator('#APjFqb').fill('ducks')
-    page.keyboard.press("Enter")
+    # Fill search word ("ducks") and hit 'Enter'
+    with page.expect_response("*/complete/search?q=ducks*") as response_info:
+        page.locator('#APjFqb').fill('ducks')
+        page.keyboard.press("Enter")
 
-    # Check responses
-    page.on("response", lambda response: print("<<", response.url, response.status))
+    # Check response URL - "/complete/search?q=ducks*"
+    response = response_info.value
+    assert response.ok and response.status == 200
+    print(response)
 
-    # Verify search bar contains the word "ducks"
+    # Verify search field on loaded page contains the word "ducks"
     expect(page.locator('#APjFqb')).to_have_value('ducks')
 
     # Check that search results on loaded page reference "ducks"
@@ -32,7 +35,7 @@ def test_google_ducks_search(page: Page) -> None:
     assert page.title() == "ducks - Google Search"
     expect(page).to_have_title('ducks - Google Search')
 
-    # Can click on a URL and it takes you to new page (which also checks content on page)
+    # Can click on a search result and it takes you to new page (which also checks content on page)
     page.get_by_text("Duck - Wikipedia").click()
     expect(page).to_have_url(re.compile(".*wikipedia"))
     assert page.title() == "Duck - Wikipedia"
