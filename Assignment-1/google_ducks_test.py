@@ -11,6 +11,7 @@ def test_google_ducks_search(page: Page) -> None:
     # Fill search word ("ducks") and hit 'Enter'
     with page.expect_response("*/complete/search?q=ducks*") as response_info:
         page.locator('#APjFqb').fill('ducks')
+        expect(page.get_by_role("button", name="Google Search")).to_be_visible()
         page.keyboard.press("Enter")
 
     # Check response URL - "/complete/search?q=ducks*"
@@ -41,7 +42,6 @@ def test_google_ducks_search(page: Page) -> None:
     assert page.title() == "Duck - Wikipedia"
 
     # Expanding on this test (and steps), I'd want to check full responses yielded from search results
-
    
 
 
